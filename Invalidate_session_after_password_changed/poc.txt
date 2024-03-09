@@ -1,1 +1,14 @@
+Summery:
+While conducting my research I discovered that the application Failure to invalidate the session after the password change. In this scenario changing the password doesn't destroy the other sessions which are logged in with old passwords.
 
+Steps to reproduce:
+1.Login with the same account in Chrome and Firefox Simultaneously using the URL: https://id.kijiji.ca/login?service=https%3A%2F%2Fid.kijiji.ca%2Foauth2.0%2FcallbackAuthorize%3Fclient_id%3Dkijiji_horizontal_web_gpmPihV3%26redirect_uri%3Dhttps%253A%252F%252Fwww.kijiji.ca%252Fapi%252Fauth%252Fcallback%252Fcis%26response_type%3Dcode%26client_name%3DCasOAuthClient&locale=en&state=PdEoaqA4jL1VfIcsNKt8SCwhBiA59eFODj_3cd3sYfg&scope=openid+email+profile
+2.Change the pass in Chrome Browser using the URL: https://www.kijiji.ca/t-settings.html
+3.Go to firefox and Update Password.
+
+Impact:
+If the attacker has a user password and logged in different places, As other sessions are not destroyed, the attacker will be still logged in to your account even after changing the password, cause his session is still active. A malicious actor can complete access your account till that session expires! So, your account remains insecure even after the changing of password
+
+Mitigation:
+When some change in user password, each and every active session that belongs to that particular account must be destroyed!
+I would like to recommend you to add a process that asks users whether user want to close all open sessions or not right after changing password.
