@@ -1,0 +1,21 @@
+Domain: moonpig.com 
+
+Description:
+                        When a web application has any pages, sources, links to external 3rd party services and are broken then the attacker can claim those endpoints to successfully conduct the attack and claim those endpoints on behalf of the target website and impersonate his identity.
+
+Steps to Reproduce :
+1.vist this url : https://www.moonpig.com/uk/
+2.Scroll down to bottom there you can see that pinterest icon.
+3.I found that the profile is not available.
+4.Create account in https://www.pinterest.co.uk/ and
+5.use this username "moonpiguk"
+   Account created-Link Hijackeddd...
+
+Impact :
+            Broken link hijackers leverage expired endpoints (expired domains, deleted social media accounts, etc.) at the end of broken links to impersonate companies and high-profile users. This causes heavy reputational and financial damage.
+
+Thank you for considering my request. I look forward to the opportunity to contribute to the security of your website. Please do not hesitate to contact me if you have any questions or require further information.
+
+Contact Details :
+mail : kishoredasarathan4@gmail.com
+integrity username : debugger_88
