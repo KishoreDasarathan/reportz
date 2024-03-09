@@ -1,0 +1,59 @@
+Summary: Cross-origin resource sharing (CORS) is a browser mechanism that enables controlled access to resources located outside of a given domain. However, it also provides a potential for cross-domain-based attacks, if a website's CORS policy is poorly configured and implemented. CORS can be exploited to trust any arbitrary domain attacker-controlled domain name and send the data to it. Attackers can make an exploit and ask the domain to send data of the victim to the attacker domain.
+
+Steps to Reproduce:
+1.visit this site app.channable.com and create an account
+2.intercept this request https://app.channable.com/companies/76255/company?redirect=companies
+3.change Origin:evil.com
+4.Send the request and see response
+Access-Control-Allow-Origin: evil.com
+Access-Control-Allow-Credentials: true
+
+Request:
+POST /messenger/web/ping HTTP/2
+Host: api-iam.intercom.io
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 846
+Origin: https://evil.com
+Referer: https://app.channable.com/
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+Te: trailers
+
+app_id=m1n87rkg&v=3&g=30d09def0909c6557288fa375ea76e2bcd02ffdf&s=39107d0e-f2d7-4e37-9b64-016653ef8f3c&r=&platform=web&installation_type=js-snippet&Idempotency-Key=7486585f1e1d9ce3&internal=%7B%7D&is_intersection_booted=false&page_title=Channable&user_active_company_id=-1&user_data=%7B%22email%22%3A%22nolowiwi%40citmo.net%22%2C%22user_id%22%3A114560%2C%22user_hash%22%3A%22ed221598c5095ef8c0d4a3ec627c5c3ec2eb84df141e1aa0c14c64ea2eea4346%22%2C%22last_request_at%22%3A1709744389.498%7D&source=apiUpdate&sampling=false&referer=https%3A%2F%2Fapp.channable.com%2Fcompanies%2F76255%2Fcompany%3Fredirect%3Dcompanies&anonymous_session=Y2YwZTNmY3Z2VG1BVGNJbnE1dVd2S0t2V3NDb3pzMGw4K0FpTStJOEUvMWwyaGtxeW5qamN3QTFHdURUVFJ4Ry0tZzBYU0NNV24zc09Pb0tRYS9wSDVoUT09--0ec6aea6542be42c258dbbf7dead62db4ccdd99e&device_identifier=ed28adf2-5295-43cc-adda-235639280ac8
+
+Response:
+HTTP/2 200 OK
+Date: Wed, 06 Mar 2024 17:01:29 GMT
+Content-Type: application/json; charset=utf-8
+Status: 200 OK
+Cache-Control: max-age=0, private, must-revalidate
+Access-Control-Allow-Origin: https://evil.com
+Vary: Accept,Accept-Encoding
+Strict-Transport-Security: max-age=31556952; includeSubDomains; preload
+X-Intercom-Version: 243772966bf17387987d6fde9aea63a8e6aff33c
+X-Xss-Protection: 1; mode=block
+X-Request-Queueing: 0
+X-Request-Id: 000697krtv8qqoqo8o4g
+Access-Control-Allow-Headers: Content-Type, Idempotency-Key, X-INTERCOM-APP, X-INTERCOM-PAGE-TITLE, X-INTERCOM-USER-DATA
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Methods: POST, GET, OPTIONS
+Etag: W/"9cb37601c74c375cf41af4a27b6b6040"
+X-Runtime: 0.270210
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+Server: nginx
+X-Ami-Version: ami-04e75d817d474162f
+
+{"app":{"name":"Channable","audio_enabled":true,"show_powered_by":true,"active_admins":null,"team_intro":"Welcome to Channable, how can we help?","team_greeting":"Hi tester 👋","messenger_background":"background-7","expected_response_delay_translation_key":"conversation_card_unknown_response_time","launcher_expected_response_delay_translation_key":"the_team_typically_replies_in_unknown","sms_notifications_enabled":false,"inbound_conversations_disabled":true,"access_to_teammate_enabled":null,"office_hours_response":"Tomorrow","help_center_site_url":null,"messenger_logo_url":"https://downloads.intercomcdn.com/i/o/137970/cfbca3a136fbdeadcf3c0a9e/278585b6fc90ed65bdc4425c86c2d62a.png","launcher_logo_url":null,"user_conversation_gifs_enabled":true,"developer_workspace":false,"upfront_email_collection_setting":"never","self_serve_suggestions_match":null,"temporary_expectations_message":null,"localized_expected_response_delay_short_text":"Back tomorrow","localized_expected_response_delay_long_text":"We'll be back online tomorrow","help_center_id":null,"use_cache_for":[]},"user":{"id":"65e88ee2112639463f09939a","role":"user_role","locale":"en","has_conversations":false,"country_code":"us","new_session":false,"help_center_require_search":false,"requires_cookie_consent":false,"prevent_multiple_inbound_conversation":false,"user_assignments":{}},"client_matches":[{"user_id":"65e88ee2112639463f09939a","company_id":"-1","predicates":[{"attribute":"client_attributes.last_visited_url","type":"string","comparison":"contains","value":"https://app.channable.com/agency/"}],"ruleset_id":32188711,"ruleset_match_behavior":"single_match","ruleset_link_id":32356239,"ruleset_link_object_type":"checklist","serialized_object":null,"checkpoint_id":null,"notification_record_id":null,"matching_locations":[0,25,13],"extra_context":{},"contains_lca_predicate":false},{"user_id":"65e88ee2112639463f09939a","company_id":"-1","predicates":[{"attribute":"client_attributes.last_visited_url","type":"string","comparison":"ends_with","value":"amazon_generators"}],"ruleset_id":36410670,"ruleset_match_behavior":"multi_match","ruleset_link_id":36604240,"ruleset_link_object_type":"post","serialized_object":null,"checkpoint_id":null,"notification_record_id":null,"matching_locations":[0,25,12],"extra_context":{},"contains_lca_predicate":false},{"user_id":"65e88ee2112639463f09939a","company_id":"-1","predicates":[{"attribute":"client_attributes.last_visited_url","type":"string","comparison":"contains","value":"?start=onboarding"},{"attribute":"client_attributes.pointer_selector","type":"css_selector","comparison":"eq","value":".project"}],"ruleset_id":21242209,"ruleset_match_behavior":"single_match","ruleset_link_id":21325295,"ruleset_link_object_type":"tour","serialized_object":null,"checkpoint_id":null,"notification_record_id":null,"matching_locations":[0,25,12],"extra_context":{},"contains_lca_predicate":false},{"user_id":"65e88ee2112639463f09939a","company_id":"-1","predicates":[{"attribute":"client_attributes.last_visited_url","type":"string","comparison":"ends_with","value":"mapping"},{"attribute":"client_attributes.pointer_selector","type":"css_selector","comparison":"eq","value":".flex-content > .outlet"}],"ruleset_id":21256917,"ruleset_match_behavior":"single_match","ruleset_link_id":21340059,"ruleset_link_object_type":"tour","serialized_object":null,"checkpoint_id":null,"notification_record_id":null,"matching_locations":[0,25,12],"extra_context":{},"contains_lca_predicate":false},{"user_id":"65e88ee2112639463f09939a","company_id":"-1","predicates":[{"attribute":"client_attributes.last_visited_url","type":"string","comparison":"ends_with","value":"setup/imports/new"},{"attribute":"client_attributes.pointer_selector","type":"css_selector","comparison":"eq","value":".card-field"}],"ruleset_id":22298801,"ruleset_match_behavior":"multi_match","ruleset_link_id":22386725,"ruleset_link_object_type":"tour","serialized_object":null,"checkpoint_id":null,"notification_record_id":null,"matching_locations":[0,25,12],"extra_context":{},"contains_lca_predicate":false}],"modules":{"messages":{"colors":{"base":"#2392ec","secondary":"#abcae0"},"instant_boot_enabled":false,"google_analytics_tracking_id":null,"use_activator":false},"rtm":{"endpoints":["https://nexus-websocket-a.intercom.io/pubsub/5-EItTeJ6SnUwoJJItfoKAWmcnnMUeF4vPYegIdVbgCA_cH-W42l4detOJNBXemyWOlBYbA805cyGT8YCkt-wXFiJugs5mHEbLs2YZ"]},"metrics":{"enabled":false},"error_reporting":{"disabled":false},"customization":{"alignment":"right","brand_name":"Channable","horizontal_padding":20,"messenger_logo_url":"https://downloads.intercomcdn.com/i/o/137970/cfbca3a136fbdeadcf3c0a9e/278585b6fc90ed65bdc4425c86c2d62a.png","launcher_logo_url":null,"messenger_wallpaper":"background-7","vertical_padding":20,"action":{"background_color":"#2392ec","foreground_color":"#000000","foreground_color_low_contrast":"#ffffff"},"action_contrast_white":{"background_color":"#000000","foreground_color":"#ffffff"},"header":{"background_color":"#abcae0","foreground_color":"#000000"}},"home":{"header":{"background":{"type":"solid","color":"#abcae0","fade_to_white":true,"image_url":null,"gradient":null,"animated":false},"content":{"greeting":{"content":"Hi tester 👋","text_color":"#000000","opacity":1.0},"introduction":{"content":"How can we help?","text_color":"#000000","opacity":1.0},"logo_url":"https://downloads.intercomcdn.com/i/o/137970/cfbca3a136fbdeadcf3c0a9e/278585b6fc90ed65bdc4425c86c2d62a.png","show_avatars":true,"close_button":{"foreground_color":"#222222","background_color":"#000000","background_opacity":0.1},"text_color_type":"dark"},"header_expanded":true},"open_config":null},"features":{"checklists":true,"checklists_reminders":true,"inbound_messages":true,"inbound_lead_messaging":true,"outbound_messages":true,"inbound_lead_messaging_docs_site":false,"launcher_discovery_mode":true,"marketo_enrichment_installed":false,"hubspot_installed":false,"google_analytics":false,"single_page_app_rate_limiting":false,"cross_site_cookies":false,"cookie_secure_flag":false,"ticket_creation":false,"no_rb_behavior_in_ping":true,"google_analytics_4_integration":false,"missing_replies_in_conversation_banner":true,"multi_help_center":true,"hide_conversation_header_status":false,"view_in_help_center_button":true,"customer_privacy_policy":false,"conversation_state_sync":true}},"anonymous_session":"ajQ2OUQwRnNxQ3hIOUw3SVZuVDVHaEQvTWduYWxmY0t2V2VjRXdpSHArdmpLTmVpRE03YVh2a210eW9DUmlrRS0tdDJVem9RZlRUak9HMUJqdFhoT2diZz09--29a4a8c619d1a53268af9b4813dae07eef12c94b","identity_verified":true,"origin_cookie_domain":"evil.com","cdas_breaching_limit":[],"checklists":[],"open_config":{"form":"default","open_to":"home","spaces":[{"type":"home","label":"Home","navigation_label":"Home","badge":null},{"type":"messages","label":"Messages","navigation_label":"Messages","badge":null},{"type":"tickets","label":"Tickets","navigation_label":"Tickets","badge":null},{"type":"news","label":"News","navigation_label":"News","badge":null},{"type":"tasks","label":"Tasks","navigation_label":"Tasks","badge":null}],"user_has_tickets":false,"user_has_received_checklists":false,"user_has_live_newsfeed":false},"unread_tickets_count":0}
+
+Impact:
+An Adversary can carry out a CORS attack to exfiltrate the sensitive details of a victim.
+
+Mitigation:
+All the REST Apis should be authenticated and the domain should not trust any other domains. Allow only selected, trusted domains in the Access-Control-Allow-Origin header.
+
