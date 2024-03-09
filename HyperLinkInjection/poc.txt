@@ -1,0 +1,16 @@
+Description:
+              A user can change their last name to a URL in order to send email invitations containing malicious hyperlinks.
+
+Domain : make.com
+
+Proof of concept:
+images attached below ..
+
+Steps to Reproduce:
+step 1 : Add organization with the name of https://attacker.com and switch it
+step 2 : Go to user and invite the victim using email
+step 3 : victim will see the invitation with malicious link
+Consequences:
+        This permits users to send malicious/phishing links to potential clients. 
+
+                                  
