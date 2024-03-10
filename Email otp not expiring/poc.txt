@@ -1,0 +1,19 @@
+Email Not expiring (same otp code receives)
+
+Summary:
+The bug involves the account creation process where users receive an OTP (one-time password) via email. However, upon repeated requests for the OTP, the same code is sent each time instead of a unique one.
+
+Steps to Reproduce:
+1.visit this url https://www.7cups.com/listener/CreateAccount.php
+2.Create an account , it sends a otp in mail
+3.capture the request in burp
+4.send to burp intruder , set null payload EX:100
+5.open your mail box (100 mail received with same otp code)
+
+Video poc attached ..
+
+Impact:
+This bug compromises the security of the account creation process. OTPs are intended to be unique and usable only once to prevent unauthorized access. With the same OTP being reused, it opens up the possibility of attackers intercepting the OTP and gaining unauthorized access to user accounts.
+
+Resolution:
+To address this issue, developers need to thoroughly review the OTP generation and management system. They should ensure that OTPs are generated uniquely for each request and are not reused. Additionally, any caching or persistence mechanisms should be checked to ensure they are properly handling OTP generation and expiration. Finally, rigorous testing is necessary to verify that the fix resolves the issue without introducing any new bugs.
