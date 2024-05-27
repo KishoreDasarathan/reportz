@@ -1,0 +1,22 @@
+Summary:
+When an image is taken using a smartphone or camera certain metadata fields are often attached to it. These fields could include the model of the camera, the time it was taken, whether the flash was used, the shutter speed, focal length, light value and even the location. In Inturn, while uploading the image as a profile picture, the exif data is not stripped from images. The exif data in images contains sensitive data like Geoloacation, latitude, longitude, etc. Also it contains the camera information and other details. 
+
+Steps to Reproduce:
+1.visit this url:https://www.grailed.com
+2.create an account and login. 
+3.scroll up , click about page. 
+4.click sell an item.
+5.fill the product details.
+6.Upload a testing image for product image that contains EXIF metadata.
+7.then Download tha product image and open with EXIF Metadata Viewer.
+8.there is an option (photo tips) click that it have photos. 
+9.Download the images and view with metadata viewer . 
+
+Impact:
+An attacker could download public group logos and find sensitive metadata. Some phones attach metadata with the latitude/longitude of where the photo was taken which could leak important information, and it's just best practice as well to strip all metadata from images when uploaded.
+
+1) By this the attacker tracks your location and use it for personal things.
+2) Sensitive data exposed.
+
+Mitigation:
+A resolution for EXIF metadata not being stripped from JPG files could involve developing and implementing an automated system within image-sharing platforms or devices that consistently removes EXIF data upon file upload or sharing. This system could leverage machine learning algorithms or dedicated software to identify and strip EXIF metadata from images before they are made accessible to others. Additionally, user education and awareness campaigns can be launched to promote the importance of privacy and encourage individuals to manually remove EXIF data before sharing images online. Regular updates and improvements to the stripping mechanism should also be prioritized to stay ahead of evolving privacy concerns and technological advancements.
