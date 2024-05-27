@@ -1,0 +1,42 @@
+No Rate Limit Description:
+                              No rate limit is a flaw that doesn't limit the no. of attempts one makes on a website server to extract data.It is a vulnerability which can prove to be critical when misused by attackers. REAL LIFE EXAMPLES : When you try to login to your account, after 3-4 wrong attempts, your account gets suspended for some hours.See It Is Resulting In Mass Mailing Or Email Bombing To Your Users Which Is Bad For Business Impact
+
+Steps to Reproduce :
+
+step 1: Go to this url "https://account.swissid.ch/selfmanagement/#/change-password"
+
+step 2: Enter new Password [Ex: Test-0000] 
+
+step 3: Save Password Intercept This Request In Burp And Forward Till You Found Your Password In Request Like
+wZSI6IkpXVFRva2VuIiwiaWF0IjoxNzA0MDkxMzY4LCJhZ2VudF9yZWFsbSI6Ii9zZXNhbSJ9.NK0VWdtUI-CGmeZjBxtNc55GUueUm9F2G7cnKOhqeS2Qy5qiP9jaRC1B8d_BO4mRSuxFB5EZ4MV5kno7q-dAcfv73hdbXCBYjVUPSv0IeP4SOnO9U6li6NzDOEbW8gHhwNuxIoROlRlFJkRPrlpcGWlR2USqWsSX7CntyOTkwd2yY7xnW4GXehjQ4tcPIWOAqdsnWNWpl4U7poEUom_49yZ8HFtFwkWOMt6DlfmkYtAKUoGAk5xR_U7uZHyKjCQGG34xU-SApJ96Sbb75VCY70ZPAJIjjRTyd9ejHpO0e23giqjhxRrk5Xglx1EATdV3FHxU-7dIcquIb0N2CujIDQ; _gcl_au=1.1.2029359798.1704091415; _ga_VLT3TMTWGD=GS1.1.1704091415.1.0.1704091415.60.0.0; _ga=GA1.2.1580958082.1704091415; _gid=GA1.2.1509295069.1704091416
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:122.0) Gecko/20100101 Firefox/122.0
+Accept: application/json, text/plain, */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Referer: https://account.swissid.ch/selfmanagement/
+X-Xsrf-Token: 39418110-6377-4109-a105-473f5c111115
+Content-Type: text/plain
+Content-Length: 10
+Origin: https://account.swissid.ch
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+Te: trailers
+Connection: keep-alive
+Test-00000
+
+step 4: Send the captured request to Intruder and repeat the request in loop
+
+step 5: Set the payload position into Password "Test-0000$0$" parameter with list of numbers ex : [1 to 100]
+
+step 6: Start Attack
+
+step 7: See You Will Get 200 ok Status Code & 100 + Email In Your INBOX
+
+"BOOM" See It Is Resulting In Mass Mailing Or Email Bombing To Your Users Which Is Bad For Business Impact.
+
+Impact:
+                    If You Are Using Any Email Service Software API Or Some Tool Which Costs You For Your Email This Type Of Attack Can Result You In Financial Lose And It Can Also Slow Down Your Services It Can Take Bulk Of Storage In Sent Mail Although If Users Are Affected By This Vulnerability They Can Stop Using Your Services Which Can Lead To Business Risk
+
+Solution:
+                    I Will Recommend You To Add A ReCaptcha & Sort Of Something Which Requires Manual Human Interaction To Proceed Like You Can Add Captcha Like 2+2=___ so that it cannot be brute forced and you also can have a limit at the backend for particular number upto 5 times a day user can request Forget Password Email or Link something like that will prevent you from someone exploiting this vulnerability
