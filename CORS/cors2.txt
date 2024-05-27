@@ -1,0 +1,66 @@
+Summary: Cross-origin resource sharing (CORS) is a browser mechanism that enables controlled access to resources located outside of a given domain. However, it also provides a potential for cross-domain-based attacks, if a website's CORS policy is poorly configured and implemented. CORS can be exploited to trust any arbitrary domain attacker-controlled domain name and send the data to it. Attackers can make an exploit and ask the domain to send data of the victim to the attacker domain.
+
+Steps to Reproduce:
+1.visit this site https://app.nbx.com/ and create an account
+2.login and
+2.intercept this request 
+3.change Origin:evil.com
+4.Send the request and see response
+Access-Control-Allow-Origin: evil.com
+Access-Control-Allow-Credentials: true
+
+Request:
+POST /v1/accounts:signInWithPassword?key=AIzaSyDKz9pCDu4AWouIR5RnyneAbOOQHsyoDFE HTTP/2
+Host: identitytoolkit.googleapis.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:124.0) Gecko/20100101 Firefox/124.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+X-Client-Version: Firefox/JsCore/10.5.2/FirebaseCore-web
+X-Firebase-Gmpid: [object Object]
+Content-Type: application/json
+Content-Length: 111
+Origin: https://evil.com
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: cross-site
+Te: trailers
+
+{"returnSecureToken":true,"email":"ttacker101@gmail.com","password":"Test_1211","clientType":"CLIENT_TYPE_WEB"}
+
+Response:
+HTTP/2 200 OK
+Expires: Mon, 01 Jan 1990 00:00:00 GMT
+Date: Tue, 12 Mar 2024 14:09:19 GMT
+Pragma: no-cache
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Content-Type: application/json; charset=UTF-8
+Vary: Origin
+Vary: X-Origin
+Vary: Referer
+Server: ESF
+Content-Length: 1396
+X-Xss-Protection: 0
+X-Frame-Options: SAMEORIGIN
+X-Content-Type-Options: nosniff
+Access-Control-Allow-Origin: https://evil.com
+Access-Control-Expose-Headers: date,vary,vary,vary,content-encoding,server,content-length
+Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+
+{
+  "kind": "identitytoolkit#VerifyPasswordResponse",
+  "localId": "MCD6rY5xaFbl10uLhvg4rsxsrmp1",
+  "email": "ttacker101@gmail.com",
+  "displayName": "",
+  "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjYwOWY4ZTMzN2ZjNzg1NTE0ZTExMGM2ZDg0N2Y0M2M3NDM1M2U0YWYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcHJvZHVjdGlvbi0yMjYwMTkiLCJhdWQiOiJwcm9kdWN0aW9uLTIyNjAxOSIsImF1dGhfdGltZSI6MTcxMDI1MjU1OSwidXNlcl9pZCI6Ik1DRDZyWTV4YUZibDEwdUxodmc0cnN4c3JtcDEiLCJzdWIiOiJNQ0Q2clk1eGFGYmwxMHVMaHZnNHJzeHNybXAxIiwiaWF0IjoxNzEwMjUyNTU5LCJleHAiOjE3MTAyNTYxNTksImVtYWlsIjoidHRhY2tlcjEwMUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJ0dGFja2VyMTAxQGdtYWlsLmNvbSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.dmqbG_pjI5Tg3xPki_Hd8y1Qr3QmAqGayWKBmhWdwxSMkW0Wm_9i_Gvsq7pmYp6w7WRY6kwrHss8WqmxO52gZ0xANRnbe8eCodlOSzIKdaQfRkTFZqSkxZxH2ik5RcUrdqNl7ABdGlhBagfyryy9qaXJh-uQvEFqO1B6OaGymcOc-4A1Ryw3VoxSkld79PPFappm3qEnXLpareSN32DF0w4x7RQ12hb1Ki0rQb5rAZ-Cz-on1XMpHSINCwPG_qVK7pTcDUIWbORzNpx3tuPDiR_IX28lrtsXKZ4glHtXD9vAhTf4fEl7BO3sWyLlbQ_UJ3CeGjqDySPHWmCzsz2aHw",
+  "registered": true,
+  "refreshToken": "AMf-vBwWAYEg6ndG32jH1uJVw9bsIcAjF6xEj1HumRLrgr2Z3jX4GpBk6bdlN0izs1NgtJXED-SEOZ8bjnHiGKXJee3HNLvJgc0dxdNko4E-EV_-6vVcblzD629BiydeYfvTQT-9tyZzP46V4VmJnNqcpzCUfZ5XVW9OLOu0LWOdakuilZPUB-eSl1AUn5v3aAtZ7JNflp_vcT1EdnLNe3gElbxR_vbbRw",
+  "expiresIn": "3600"
+}
+
+
+Impact:
+An Adversary can carry out a CORS attack to exfiltrate the sensitive details of a victim.
+
+Mitigation:
+All the REST Apis should be authenticated and the domain should not trust any other domains. Allow only selected, trusted domains in the Access-Control-Allow-Origin header.
