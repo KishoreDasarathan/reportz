@@ -1,0 +1,21 @@
+Authentication Bypass - Email Verification code bypass in account registration process.
+
+Summary :
+Authentication Bypass is a dangerous vulnerability, which is found in Web-Applications. An Attackers can bypass the control mechanisms which are used by the underlying web application like Email verification, OTP, Captcha, 2FA, etc. An Attacker can perform a  complete Account takeover of Victim.
+
+Steps to Reproduce:
+
+1) Go to https://my.jpesa.com/
+2) create an account 
+3) Enter the mobile and Email 
+4) It sends an otp 
+5) Enter any 6 digit code and click verify and capture the request 
+6) Then Send this request to burpsuite intruder , and bruteforce the confirmation Code 
+7) look for 200 ok response 
+Now successfully Account Verified.
+
+Impact:
+A successful OTP bypass attack can erode user trust in the security of the application. Users expect OTPs to provide an additional layer of security, and a breach of this mechanism can lead to a loss of confidence in the application's ability to protect their accounts and data.
+
+Mitigation:
+Enforce rate limiting on OTP verification requests to prevent attackers from making multiple attempts within a short period. Limiting the number of OTP verification attempts per IP address or per user account can mitigate the effectiveness of brute-force attacks. Implement account lockout mechanisms that temporarily suspend user accounts after a certain number of failed OTP verification attempts. This prevents attackers from continuously attempting to guess OTPs and provides an additional barrier against brute-force attacks.
