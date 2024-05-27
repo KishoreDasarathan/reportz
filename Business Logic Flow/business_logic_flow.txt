@@ -1,0 +1,20 @@
+Bussiness Logic Flow - Prevents the invited employee from creating an account
+
+Summery:
+The website's team creation feature allows users to invite employees, triggering a verification email to the new member. However, a critical flaw prevents the invited employee from creating an account using their email address due to the invitation source.
+
+Steps to Reproduce:
+1.Visit the https://app.staatic.com/register
+2.Create an account
+3.visits Team Member https://app.staatic.com/resources/users
+4.create Team Member
+5.Enter credentials for another user
+6.then create account with the same email 
+7.it shows an error "email already taken"
+
+
+impact:
+The inability of newly invited employees to create an account using their email addresses disrupts the team creation process. This frustration could extend to the inviting user who expects seamless collaboration within the team. It leads to wasted time and effort as users attempt to troubleshoot the issue or resort to alternative, less efficient means of communication and collaboration.
+
+Fixing Recommendation:
+To mitigate this issue, developers should adjust the account creation process to accommodate invited employees, ensuring seamless registration regardless of the invitation source. Implementing robust validation mechanisms during account creation can enhance security while maintaining user accessibility and system functionality. Regular testing and monitoring are crucial to identify and address similar vulnerabilities promptly.
